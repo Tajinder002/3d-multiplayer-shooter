@@ -1,0 +1,279 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Courier New', Courier, monospace;
+  background: #000;
+  color: #fff;
+}
+
+/* Canvas container */
+#game-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Loading screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-bar {
+  width: 200px;
+  height: 4px;
+  background: #333;
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.loading-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #00ff88, transparent);
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Menu screen */
+.menu-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.menu-content {
+  text-align: center;
+}
+
+.menu-content h1 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
+}
+
+.menu-content input {
+  padding: 10px 15px;
+  font-size: 1rem;
+  background: #1a1a1a;
+  border: 1px solid #00ff88;
+  color: #fff;
+  width: 200px;
+  margin-bottom: 20px;
+  outline: none;
+  font-family: inherit;
+}
+
+.menu-content button {
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  background: #00ff88;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.menu-content button:hover {
+  background: #00cc70;
+  transform: scale(1.05);
+}
+
+.instructions {
+  margin-top: 30px;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* HUD */
+.hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Health bar */
+.health-bar {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 200px;
+  height: 20px;
+  background: #333;
+  border: 2px solid #00ff88;
+  border-radius: 3px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.health-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff0055, #ff0000);
+  width: 100%;
+  transition: width 0.3s ease;
+}
+
+.health-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Ammo counter */
+.ammo-counter {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-size: 1.5rem;
+  color: #00ff88;
+  text-shadow: 0 0 5px rgba(0, 255, 136, 0.7);
+  z-index: 10;
+}
+
+/* Minimap */
+.minimap {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 120px;
+  height: 120px;
+  background: rgba(50, 50, 50, 0.7);
+  border: 2px solid #00ff88;
+  border-radius: 50%;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Death screen */
+.death-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.death-screen h2 {
+  font-size: 3rem;
+  color: #ff0055;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255, 0, 85, 0.7);
+}
+
+.death-screen button {
+  padding: 10px 25px;
+  font-size: 1rem;
+  background: #00ff88;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.death-screen button:hover {
+  background: #00cc70;
+  transform: scale(1.05);
+}
+
+/* Kill feed */
+#kill-feed {
+  color: #ff0055;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+/* Hidden utility class */
+.hidden {
+  display: none !important;
+}
+
+/* Crosshair */
+.crosshair {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.crosshair::before {
+  width: 2px;
+  height: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.crosshair::after {
+  width: 20px;
+  height: 2px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

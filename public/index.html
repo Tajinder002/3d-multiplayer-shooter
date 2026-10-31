@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Multiplayer Shooter</title>
+  <link rel="stylesheet" href="/src/ui/styles.css" />
+</head>
+<body>
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-bar"></div>
+    <p>Loading Game...</p>
+  </div>
+
+  <div id="hud" class="hud hidden">
+    <div class="health-bar">
+      <div class="health-fill" id="health-fill"></div>
+      <span id="health-text">100</span>
+    </div>
+    <div class="ammo-counter" id="ammo-counter">30/120</div>
+    <div class="minimap" id="minimap"></div>
+  </div>
+
+  <div id="menu-screen" class="menu-screen">
+    <div class="menu-content">
+      <h1>3D Multiplayer Shooter</h1>
+      <input type="text" id="player-name" placeholder="Enter your name" maxlength="15" />
+      <button id="join-game-btn">Join Game</button>
+      <p class="instructions">Press WASD to move, mouse to aim, left click to shoot</p>
+    </div>
+  </div>
+
+  <div id="death-screen" class="death-screen hidden">
+    <h2>You Died</h2>
+    <p id="kill-feed"></p>
+    <button id="respawn-btn">Respawn</button>
+  </div>
+
+  <script type="module" src="/src/game/main.js"></script>
+</body>
+</html>
