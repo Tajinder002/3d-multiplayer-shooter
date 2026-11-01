@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { Cannon } from './physics.js';
 import { World } from './world.js';
 import { Multiplayer } from './multiplayer.js';
 

@@ -9,13 +9,17 @@ export class Multiplayer {
   }
 
   connect(playerName) {
-    this.socket = io();
-    
-    // Set player name from URL params
+    // Allow overriding the game server via ?server= URL param,
+    // otherwise fall back to same-origin (works locally with `npm run dev`).
     const urlParams = new URLSearchParams(window.location.search);
+    const serverUrl = urlParams.get('server') || undefined;
+
+    this.socket = io(serverUrl);
+
+    // Set player name from URL params
     const nameFromUrl = urlParams.get('name');
-    
-    this.socket.emit('join-game', { 
+
+    this.socket.emit('join-game', {
       name: playerName || nameFromUrl || 'Player'
     });
     
