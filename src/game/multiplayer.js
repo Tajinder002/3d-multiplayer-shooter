@@ -6,15 +6,21 @@ export class Multiplayer {
     this.socket = null;
     this.localPlayer = null;
     this.projectiles = [];
+    this.playerMap = new Map();
   }
 
   connect(playerName) {
     // Allow overriding the game server via ?server= URL param,
     // otherwise fall back to same-origin (works locally with `npm run dev`).
     const urlParams = new URLSearchParams(window.location.search);
-    const serverUrl = urlParams.get('server') || undefined;
+    const serverUrl = urlParams.get('server') || 'http://localhost:3000';
 
-    this.socket = io(serverUrl);
+    this.socket = io(serverUrl, {
+      transports: ['websocket', 'polling'],
+      timeout: 20000,
+      reconnection: true,
+      reconnectionAttempts: 5
+    });
 
     // Set player name from URL params
     const nameFromUrl = urlParams.get('name');
